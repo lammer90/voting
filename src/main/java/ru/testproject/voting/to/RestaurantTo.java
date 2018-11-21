@@ -1,7 +1,7 @@
 package ru.testproject.voting.to;
 
-import ru.testproject.voting.model.AbstractNamedEntity;
 import ru.testproject.voting.model.Dish;
+import ru.testproject.voting.model.Vote;
 
 import java.util.Set;
 
