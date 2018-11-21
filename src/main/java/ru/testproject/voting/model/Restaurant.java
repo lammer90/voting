@@ -6,12 +6,12 @@ import org.hibernate.annotations.WhereJoinTable;
 import java.util.Set;
 
 public class Restaurant extends AbstractNamedEntity{
-    /*@Where(clause = "restaurant_id = r.id")
-    @WhereJoinTable(clause = "restaurant_id = r.id")*/
+    /*@Where(clause = "DATEDIFF(CURDATE(), date_time) = 0")
+    @WhereJoinTable(clause = "DATEDIFF(CURDATE(), date_time) = 0*/
     private Set<Dish> dishes;
 
-    /*@Where(clause = "restaurant_id = r.id")
-    @WhereJoinTable(clause = "restaurant_id = r.id")*/
+    /*@Where(clause = "DATEDIFF(CURDATE(), date_time) = 0")
+    @WhereJoinTable(clause = "DATEDIFF(CURDATE(), date_time) = 0")*/
     private Set<Vote> votes;
 
     public Restaurant() {
