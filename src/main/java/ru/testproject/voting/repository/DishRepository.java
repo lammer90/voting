@@ -2,6 +2,7 @@ package ru.testproject.voting.repository;
 
 import ru.testproject.voting.model.Dish;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface DishRepository {
@@ -13,5 +14,5 @@ public interface DishRepository {
 
     List<Dish> getAll();
 
-    List<Dish> getAllFilterRestAndDate();
+    List<Dish> getAllFilterRestAndDate(int rest_id, LocalDateTime date);
 }

@@ -3,6 +3,7 @@ package ru.testproject.voting.repository.impl;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.repository.RestaurantRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class RestaurantRepositoryImpl implements RestaurantRepository {
@@ -27,7 +28,7 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     }
 
     @Override
-    public List<Restaurant> getAllWithVotesAndDishes() {
+    public List<Restaurant> getAllWithVotesAndDishesByDate(LocalDateTime dateTime) {
         return null;
     }
 }
