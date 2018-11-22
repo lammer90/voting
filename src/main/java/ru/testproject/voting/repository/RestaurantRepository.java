@@ -2,7 +2,7 @@ package ru.testproject.voting.repository;
 
 import ru.testproject.voting.model.Restaurant;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface RestaurantRepository {
@@ -14,5 +14,5 @@ public interface RestaurantRepository {
 
     List<Restaurant> getAll();
 
-    List<Restaurant> getAllWithVotesAndDishesByDate(LocalDateTime dateTime);
+    List<Restaurant> getAllWithVotesAndDishesByDate(LocalDate date);
 }

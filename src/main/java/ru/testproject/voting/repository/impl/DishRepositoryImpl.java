@@ -3,7 +3,7 @@ package ru.testproject.voting.repository.impl;
 import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.repository.DishRepository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public class DishRepositoryImpl implements DishRepository {
@@ -28,7 +28,7 @@ public class DishRepositoryImpl implements DishRepository {
     }
 
     @Override
-    public List<Dish> getAllFilterRestAndDate(int rest_id, LocalDateTime date) {
+    public List<Dish> getAllFilterRestAndDate(int rest_id, LocalDate date) {
         return null;
     }
 }

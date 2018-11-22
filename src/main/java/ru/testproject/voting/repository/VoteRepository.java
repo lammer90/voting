@@ -2,7 +2,7 @@ package ru.testproject.voting.repository;
 
 import ru.testproject.voting.model.Vote;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface VoteRepository {
@@ -12,5 +12,5 @@ public interface VoteRepository {
 
     Vote get(int id, int user_id);
 
-    List<Vote> getAllFilterRestAndDate(int rest_id, LocalDateTime date);
+    List<Vote> getAllFilterRestAndDate(int rest_id, LocalDate date);
 }

@@ -1,9 +1,10 @@
 package ru.testproject.voting.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Vote extends AbstractBaseEntity{
-    private LocalDateTime dateTime;
+    private LocalDate date;
 
     private Restaurant restaurant;
 
@@ -12,23 +13,47 @@ public class Vote extends AbstractBaseEntity{
     public Vote() {
     }
 
-    public Vote(LocalDateTime dateTime, Restaurant restaurant, User user) {
-        this.dateTime = dateTime;
+    public Vote(LocalDate date, Restaurant restaurant, User user) {
+        this.date = date;
         this.restaurant = restaurant;
         this.user = user;
     }
 
-    public Vote(Integer id, LocalDateTime dateTime, Restaurant restaurant, User user) {
+    public Vote(Integer id, LocalDate date, Restaurant restaurant, User user) {
         super(id);
-        this.dateTime = dateTime;
+        this.date = date;
         this.restaurant = restaurant;
+        this.user = user;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
         this.user = user;
     }
 
     @Override
     public String toString() {
         return "Vote{" +
-                "dateTime=" + dateTime +
+                "dateTime=" + date +
                 ", restaurant=" + restaurant +
                 ", user=" + user +
                 ", id=" + id +

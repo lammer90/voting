@@ -3,7 +3,7 @@ package ru.testproject.voting.repository.impl;
 import ru.testproject.voting.model.Vote;
 import ru.testproject.voting.repository.VoteRepository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public class VoteRepositoryImpl implements VoteRepository {
@@ -23,7 +23,7 @@ public class VoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
-    public List<Vote> getAllFilterRestAndDate(int rest_id, LocalDateTime date) {
+    public List<Vote> getAllFilterRestAndDate(int rest_id, LocalDate date) {
         return null;
     }
 }

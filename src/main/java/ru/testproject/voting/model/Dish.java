@@ -1,5 +1,6 @@
 package ru.testproject.voting.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Dish extends AbstractNamedEntity{
@@ -7,19 +8,19 @@ public class Dish extends AbstractNamedEntity{
 
     private Restaurant restaurant;
 
-    private LocalDateTime date;
+    private LocalDate date;
 
     public Dish() {
     }
 
-    public Dish(String name, int price, Restaurant restaurant, LocalDateTime date) {
+    public Dish(String name, int price, Restaurant restaurant, LocalDate date) {
         super(name);
         this.price = price;
         this.restaurant = restaurant;
         this.date = date;
     }
 
-    public Dish(Integer id, String name, int price, Restaurant restaurant, LocalDateTime date) {
+    public Dish(Integer id, String name, int price, Restaurant restaurant, LocalDate date) {
         super(id, name);
         this.price = price;
         this.restaurant = restaurant;
@@ -34,7 +35,7 @@ public class Dish extends AbstractNamedEntity{
         return restaurant;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -46,7 +47,7 @@ public class Dish extends AbstractNamedEntity{
         this.restaurant = restaurant;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
