@@ -1,5 +1,7 @@
 package ru.testproject.voting.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.repository.impl.DishRepositoryImpl;
@@ -12,10 +14,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Service
 public class CommonServiceImpl implements CommonService {
 
+    @Autowired
     private RestaurantRepositoryImpl restaurantRepository;
 
+    @Autowired
     private DishRepositoryImpl dishRepository;
 
     @Override

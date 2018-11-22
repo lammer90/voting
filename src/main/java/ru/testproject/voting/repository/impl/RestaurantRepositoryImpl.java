@@ -1,11 +1,13 @@
 package ru.testproject.voting.repository.impl;
 
+import org.springframework.stereotype.Repository;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.repository.RestaurantRepository;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Repository
 public class RestaurantRepositoryImpl implements RestaurantRepository {
     @Override
     public Restaurant save(Restaurant restaurant) {

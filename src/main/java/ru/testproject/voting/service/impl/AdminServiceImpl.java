@@ -1,5 +1,7 @@
 package ru.testproject.voting.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.model.User;
@@ -11,12 +13,16 @@ import ru.testproject.voting.service.AdminService;
 
 import java.util.List;
 
+@Service
 public class AdminServiceImpl implements AdminService {
 
+    @Autowired
     private RestaurantRepository restaurantRepository;
 
+    @Autowired
     private DishRepository dishRepository;
 
+    @Autowired
     private UserRepository userRepository;
 
     @Override

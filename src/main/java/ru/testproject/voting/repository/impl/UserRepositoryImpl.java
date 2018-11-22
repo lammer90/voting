@@ -1,10 +1,12 @@
 package ru.testproject.voting.repository.impl;
 
+import org.springframework.stereotype.Repository;
 import ru.testproject.voting.model.User;
 import ru.testproject.voting.repository.UserRepository;
 
 import java.util.List;
 
+@Repository
 public class UserRepositoryImpl implements UserRepository {
     @Override
     public User save(User user) {

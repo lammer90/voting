@@ -1,11 +1,15 @@
 package ru.testproject.voting.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.testproject.voting.model.Vote;
 import ru.testproject.voting.repository.VoteRepository;
 import ru.testproject.voting.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private VoteRepository voteRepository;
 
     @Override

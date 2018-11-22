@@ -1,5 +1,7 @@
 package ru.testproject.voting.web.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.model.User;
@@ -7,8 +9,10 @@ import ru.testproject.voting.service.AdminService;
 
 import java.util.List;
 
+@Controller
 public class AdminController extends AbstractController{
 
+    @Autowired
     private AdminService adminService;
 
     public Restaurant addRestaurant(Restaurant restaurant){
