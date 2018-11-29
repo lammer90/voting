@@ -1,30 +1,38 @@
 package ru.testproject.voting.repository.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import ru.testproject.voting.model.User;
 import ru.testproject.voting.repository.UserRepository;
+import ru.testproject.voting.repository.datajpa.JpaUserRepository;
 
 import java.util.List;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
+    private static final Sort SORT = new Sort(Sort.Direction.ASC, "name");
+
+    @Autowired
+    private JpaUserRepository jpaUserRepository;
+
     @Override
     public User save(User user) {
-        return null;
+        return jpaUserRepository.save(user);
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return jpaUserRepository.delete(id) != 0;
     }
 
     @Override
     public User get(int id) {
-        return null;
+        return jpaUserRepository.getById(id);
     }
 
     @Override
     public List<User> getAll() {
-        return null;
+        return jpaUserRepository.findAll(SORT);
     }
 }
