@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
-import ru.testproject.voting.repository.impl.DishRepositoryImpl;
-import ru.testproject.voting.repository.impl.RestaurantRepositoryImpl;
+import ru.testproject.voting.repository.DishRepository;
+import ru.testproject.voting.repository.RestaurantRepository;
 import ru.testproject.voting.service.CommonService;
 import ru.testproject.voting.to.RestaurantTo;
 
@@ -18,10 +18,10 @@ import java.util.stream.Collectors;
 public class CommonServiceImpl implements CommonService {
 
     @Autowired
-    private RestaurantRepositoryImpl restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
     @Autowired
-    private DishRepositoryImpl dishRepository;
+    private DishRepository dishRepository;
 
     @Override
     public List<Dish> getAllDishesFilterByRestToday(int rest_id) {

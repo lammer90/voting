@@ -1,13 +1,25 @@
 package ru.testproject.voting.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "votes")
 public class Vote extends AbstractBaseEntity{
+
+    @Column(name = "date_time")
+    @NotNull
     private LocalDate date;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
+    @NotNull
     private Restaurant restaurant;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @NotNull
     private User user;
 
     public Vote() {

@@ -3,13 +3,22 @@ package ru.testproject.voting.model;
 import org.hibernate.annotations.Where;
 import org.hibernate.annotations.WhereJoinTable;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Set;
 
+@Entity
+@Table(name = "restaurants")
 public class Restaurant extends AbstractNamedEntity{
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     /*@Where(clause = "DATEDIFF(CURDATE(), date_time) = 0")
     @WhereJoinTable(clause = "DATEDIFF(CURDATE(), date_time) = 0*/
     private Set<Dish> dishes;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
     /*@Where(clause = "DATEDIFF(CURDATE(), date_time) = 0")
     @WhereJoinTable(clause = "DATEDIFF(CURDATE(), date_time) = 0")*/
     private Set<Vote> votes;

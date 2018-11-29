@@ -1,13 +1,21 @@
 package ru.testproject.voting.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "dishes")
 public class Dish extends AbstractNamedEntity{
     private double price;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
+    @NotNull
     private Restaurant restaurant;
 
+    @Column(name = "date_time")
+    @NotNull
     private LocalDate date;
 
     public Dish() {
