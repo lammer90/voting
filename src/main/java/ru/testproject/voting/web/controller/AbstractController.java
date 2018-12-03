@@ -7,6 +7,7 @@ import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.service.CommonService;
 import ru.testproject.voting.to.RestaurantTo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -20,7 +21,7 @@ public abstract class AbstractController {
     }
 
     public List<RestaurantTo> getAllRestWithVotesAndDishesToday(){
-        return commonService.getAllRestWithVotesAndDishesToday();
+        return commonService.getAllRestWithVotesAndDishesByDate(LocalDate.now());
     }
 
     public List<Dish> getAllDishesFilterByRestToday(int rest_id){

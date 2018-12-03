@@ -4,6 +4,7 @@ import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.to.RestaurantTo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface CommonService {
@@ -11,5 +12,5 @@ public interface CommonService {
 
     List<Restaurant> getAllRest();
 
-    List<RestaurantTo> getAllRestWithVotesAndDishesToday();
+    List<RestaurantTo> getAllRestWithVotesAndDishesByDate(LocalDate localDate);
 }
