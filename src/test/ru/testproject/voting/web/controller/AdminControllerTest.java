@@ -1,19 +1,14 @@
 package ru.testproject.voting.web.controller;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import ru.testproject.voting.service.AdminService;
 
-import static org.junit.Assert.*;
-
-@ContextConfiguration({
+@SpringJUnitConfig(locations ={
         "classpath:spring/spring-config.xml",
         "classpath:spring/spring-db.xml"
 })
-@RunWith(SpringJUnit4ClassRunner.class)
 public class AdminControllerTest {
 
     @Autowired

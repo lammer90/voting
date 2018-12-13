@@ -1,31 +1,40 @@
 package ru.testproject.voting.repository.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.testproject.voting.model.Vote;
 import ru.testproject.voting.repository.VoteRepository;
-
-import java.time.LocalDate;
-import java.util.List;
+import ru.testproject.voting.repository.datajpa.JpaUserRepository;
+import ru.testproject.voting.repository.datajpa.JpaVoteRepository;
 
 @Repository
+@Transactional(readOnly = true)
 public class VoteRepositoryImpl implements VoteRepository {
+
+    @Autowired
+    private JpaVoteRepository jpaVoteRepository;
+
+    @Autowired
+    private JpaUserRepository jpaUserRepository;
+
     @Override
+    @Transactional
     public Vote save(Vote vote, int user_id) {
-        return null;
+        if (!vote.isNew() && get(vote.getId(), user_id) == null) {
+            return null;
+        }
+        vote.setUser(jpaUserRepository.getOne(user_id));
+        return jpaVoteRepository.save(vote);
     }
 
     @Override
+    @Transactional
     public boolean delete(int id, int user_id) {
-        return false;
+        return jpaVoteRepository.delete(id, user_id) != 0;
     }
 
-    @Override
-    public Vote get(int id, int user_id) {
-        return null;
-    }
-
-    @Override
-    public List<Vote> getAllFilterRestAndDate(int rest_id, LocalDate date) {
-        return null;
+    private Vote get(int id, int userId) {
+        return jpaVoteRepository.findByIdAndUser_Id(id, userId);
     }
 }
