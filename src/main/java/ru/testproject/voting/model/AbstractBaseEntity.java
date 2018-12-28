@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @MappedSuperclass
+@Access(AccessType.FIELD)
 public abstract class AbstractBaseEntity {
 
     @Id
@@ -18,7 +19,7 @@ public abstract class AbstractBaseEntity {
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

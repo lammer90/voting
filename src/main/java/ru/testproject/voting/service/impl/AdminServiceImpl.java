@@ -11,12 +11,9 @@ import ru.testproject.voting.repository.RestaurantRepository;
 import ru.testproject.voting.repository.UserRepository;
 import ru.testproject.voting.service.AdminService;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import static ru.testproject.voting.util.VerifyUtil.checkEmptyString;
-import static ru.testproject.voting.util.VerifyUtil.checkNotFound;
-import static ru.testproject.voting.util.VerifyUtil.chekObject;
+import static ru.testproject.voting.util.VerifyUtil.*;
 
 @Service
 public class AdminServiceImpl implements AdminService {

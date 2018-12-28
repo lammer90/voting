@@ -32,8 +32,8 @@ public class VoteRepositoryImpl implements VoteRepository {
 
     @Override
     @Transactional
-    public boolean delete(LocalDate date, int user_id) {
-        return jpaVoteRepository.delete(date, user_id) != 0;
+    public boolean delete(LocalDate date, int userId) {
+        return jpaVoteRepository.delete(date, userId) != 0;
     }
 
     public Vote getByDate(LocalDate date, int userId) {

@@ -36,7 +36,7 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
 
     @Override
     public List<Restaurant> getAll() {
-        return jpaRestaurantRepository.findAll();
+        return jpaRestaurantRepository.findAllOrdered();
     }
 
     @Override

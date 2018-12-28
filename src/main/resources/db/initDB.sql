@@ -39,7 +39,7 @@ CREATE TABLE restaurants
   date_time     TIMESTAMP    NOT NULL,
   price         REAL         NOT NULL,
   restaurant_id INTEGER      NOT NULL,
-  CONSTRAINT dishes_name_date_idx UNIQUE (name, date_time),
+  CONSTRAINT dishes_name_date_rest_idx UNIQUE (name, date_time, restaurant_id),
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
 CREATE INDEX dishes_restaurant_date_idx
@@ -56,4 +56,4 @@ CREATE TABLE votes
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 CREATE INDEX votes_datetime_idx
-  ON votes (date_time);
+  ON votes (date_time, user_id);
