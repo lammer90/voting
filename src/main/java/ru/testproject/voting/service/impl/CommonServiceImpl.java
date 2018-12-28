@@ -13,6 +13,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ru.testproject.voting.util.VerifyUtil.chekObject;
+
 @Service
 public class CommonServiceImpl implements CommonService {
 
@@ -23,8 +25,9 @@ public class CommonServiceImpl implements CommonService {
     private DishRepository dishRepository;
 
     @Override
-    public List<Dish> getAllDishesFilterByRestToday(int rest_id) {
-        return dishRepository.getAllFilterRestAndDate(rest_id, LocalDate.now());
+    public List<Dish> getAllDishesFilterByRestToday(int restId) {
+        chekObject(restaurantRepository.get(restId), "No restaurant found");
+        return dishRepository.getAllFilterRestAndDate(restId, LocalDate.now());
     }
 
     @Override

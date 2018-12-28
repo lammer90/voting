@@ -1,12 +1,18 @@
 package ru.testproject.voting.model;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "dishes")
 public class Dish extends AbstractNamedEntity{
+
+    @Column(name = "price")
+    @Digits(integer = 20, fraction = 2)
     private double price;
 
     @ManyToOne(fetch = FetchType.LAZY)

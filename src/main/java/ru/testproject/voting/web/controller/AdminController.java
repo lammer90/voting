@@ -15,8 +15,8 @@ public class AdminController extends AbstractController{
     @Autowired
     private AdminService adminService;
 
-    public Restaurant addRestaurant(Restaurant restaurant){
-        return adminService.addRestaurant(restaurant);
+    public Restaurant addRestaurant(String restName){
+        return adminService.addRestaurant(restName);
     }
 
     public void deleteRestaurant(int id){

@@ -23,9 +23,9 @@ public class VoteRepositoryImpl implements VoteRepository {
     @Override
     @Transactional
     public Vote save(Vote vote, int user_id) {
-        if (!vote.isNew() && get(vote.getId(), user_id) == null) {
+        /*if (!vote.isNew() && get(vote.getId(), user_id) == null) {
             return null;
-        }
+        }*/
         vote.setUser(jpaUserRepository.getOne(user_id));
         return jpaVoteRepository.save(vote);
     }
@@ -40,7 +40,7 @@ public class VoteRepositoryImpl implements VoteRepository {
         return jpaVoteRepository.findByDateAndUser_Id(date, userId);
     }
 
-    private Vote get(int id, int userId) {
+    /*private Vote get(int id, int userId) {
         return jpaVoteRepository.findByIdAndUser_Id(id, userId);
-    }
+    }*/
 }

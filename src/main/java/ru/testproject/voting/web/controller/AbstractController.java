@@ -24,7 +24,7 @@ public abstract class AbstractController {
         return commonService.getAllRestWithVotesAndDishesToday();
     }
 
-    public List<Dish> getAllDishesFilterByRestToday(int rest_id){
-        return commonService.getAllDishesFilterByRestToday(rest_id);
+    public List<Dish> getAllDishesFilterByRestToday(int restId){
+        return commonService.getAllDishesFilterByRestToday(restId);
     }
 }

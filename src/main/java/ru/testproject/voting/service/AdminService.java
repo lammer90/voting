@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AdminService {
 
-    Restaurant addRestaurant(Restaurant restaurant);
+    Restaurant addRestaurant(String restName);
 
     void deleteRestaurant(int id);
 

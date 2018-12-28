@@ -10,5 +10,5 @@ import java.util.List;
 public interface UserService {
     Vote addOrUpdateVote(int restId, int userId);
 
-    boolean deleteVote(int userId);
+    void deleteVote(int userId);
 }
