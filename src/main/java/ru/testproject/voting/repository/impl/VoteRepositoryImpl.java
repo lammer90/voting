@@ -8,6 +8,8 @@ import ru.testproject.voting.repository.VoteRepository;
 import ru.testproject.voting.repository.datajpa.JpaUserRepository;
 import ru.testproject.voting.repository.datajpa.JpaVoteRepository;
 
+import java.time.LocalDate;
+
 @Repository
 @Transactional(readOnly = true)
 public class VoteRepositoryImpl implements VoteRepository {
@@ -30,8 +32,12 @@ public class VoteRepositoryImpl implements VoteRepository {
 
     @Override
     @Transactional
-    public boolean delete(int id, int user_id) {
-        return jpaVoteRepository.delete(id, user_id) != 0;
+    public boolean delete(LocalDate date, int user_id) {
+        return jpaVoteRepository.delete(date, user_id) != 0;
+    }
+
+    public Vote getByDate(LocalDate date, int userId) {
+        return jpaVoteRepository.findByDateAndUser_Id(date, userId);
     }
 
     private Vote get(int id, int userId) {

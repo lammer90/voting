@@ -8,5 +8,7 @@ import java.util.List;
 public interface VoteRepository {
     Vote save(Vote vote, int user_id);
 
-    boolean delete(int id, int user_id);
+    boolean delete(LocalDate date, int user_id);
+
+    Vote getByDate(LocalDate date, int user_id);
 }

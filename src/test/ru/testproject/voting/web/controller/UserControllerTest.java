@@ -45,7 +45,6 @@ public class UserControllerTest {
     @Test
     public void getAllRestWithVotesAndDishesToday() {
         List<RestaurantTo> list = commonService.getAllRestWithVotesAndDishesByDate(LocalDate.of(2018, 11, 29));
-
     }
 
     @Test

@@ -12,5 +12,5 @@ public interface CommonService {
 
     List<Restaurant> getAllRest();
 
-    List<RestaurantTo> getAllRestWithVotesAndDishesByDate(LocalDate localDate);
+    List<RestaurantTo> getAllRestWithVotesAndDishesToday();
 }

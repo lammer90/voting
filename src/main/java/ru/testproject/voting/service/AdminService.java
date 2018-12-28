@@ -16,11 +16,15 @@ public interface AdminService {
 
     void updateUser(User user);
 
+    User getUser(int id);
+
     void deleteUser(int id);
 
     List<User> getAllUsers();
 
     Dish addDish(Dish dish);
+
+    void updateDish(Dish dish);
 
     Dish getDish(int id);
 

@@ -5,9 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import ru.testproject.voting.model.Vote;
 
+import java.time.LocalDate;
+
 public interface JpaVoteRepository extends JpaRepository<Vote, Integer> {
     Vote findByIdAndUser_Id(int id, int user_id);
 
-    @Query("DELETE FROM Vote v WHERE v.id=:id AND v.user.id=:user_id")
-    int delete(@Param("id") int id, @Param("user_id") int userId);
+    Vote findByDateAndUser_Id(LocalDate date, int user_id);
+
+    @Query("DELETE FROM Vote v WHERE v.date=:date AND v.user.id=:user_id")
+    int delete(@Param("date") LocalDate date, @Param("user_id") int userId);
 }

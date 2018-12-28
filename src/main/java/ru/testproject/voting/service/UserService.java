@@ -7,10 +7,8 @@ import ru.testproject.voting.to.RestaurantTo;
 
 import java.util.List;
 
-public interface UserService{
-    Vote addVote(Vote vote, int userId);
+public interface UserService {
+    Vote addOrUpdateVote(int restId, int userId);
 
-    void updateVote(Vote vote, int userId);
-
-    void deleteVote(int id, int userId);
+    boolean deleteVote(int userId);
 }

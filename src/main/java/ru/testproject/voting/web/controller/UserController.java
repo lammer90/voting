@@ -7,23 +7,18 @@ import ru.testproject.voting.service.UserService;
 import ru.testproject.voting.web.SecurityUtil;
 
 @Controller
-public class UserController extends AbstractController{
+public class UserController extends AbstractController {
 
     @Autowired
     private UserService userService;
 
-    public Vote addVote(Vote vote){
+    public Vote addOrUpdateVote(int restId) {
         int userId = SecurityUtil.authUserId();
-        return userService.addVote(vote, userId);
+        return userService.addOrUpdateVote(restId, userId);
     }
 
-    public void updateVote(Vote vote){
+    public void deleteVoteToday() {
         int userId = SecurityUtil.authUserId();
-        userService.updateVote(vote, userId);
-    }
-
-    public void deleteVote(int id){
-        int userId = SecurityUtil.authUserId();
-        userService.deleteVote(id, userId);
+        userService.deleteVote(userId);
     }
 }

@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "votes")
-public class Vote extends AbstractBaseEntity{
+public class Vote extends AbstractBaseEntity {
 
     @Column(name = "date_time")
     @NotNull
@@ -25,17 +25,15 @@ public class Vote extends AbstractBaseEntity{
     public Vote() {
     }
 
-    public Vote(LocalDate date, Restaurant restaurant, User user) {
+    public Vote(LocalDate date, Restaurant restaurant) {
         this.date = date;
         this.restaurant = restaurant;
-        this.user = user;
     }
 
-    public Vote(Integer id, LocalDate date, Restaurant restaurant, User user) {
+    public Vote(Integer id, LocalDate date, Restaurant restaurant) {
         super(id);
         this.date = date;
         this.restaurant = restaurant;
-        this.user = user;
     }
 
     public LocalDate getDate() {

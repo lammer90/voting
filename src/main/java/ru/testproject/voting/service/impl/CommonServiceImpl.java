@@ -33,8 +33,8 @@ public class CommonServiceImpl implements CommonService {
     }
 
     @Override
-    public List<RestaurantTo> getAllRestWithVotesAndDishesByDate(LocalDate localDate) {
-        List<Restaurant> restaurants = restaurantRepository.getAllWithVotesAndDishesByDate(localDate);
+    public List<RestaurantTo> getAllRestWithVotesAndDishesToday() {
+        List<Restaurant> restaurants = restaurantRepository.getAllWithVotesAndDishesByDate(LocalDate.now());
 
         return restaurants.stream()
                 .map(r -> new RestaurantTo(r.getId(), r.getName(), r.getVotes().size(), r.getDishes())).collect(Collectors.toList());

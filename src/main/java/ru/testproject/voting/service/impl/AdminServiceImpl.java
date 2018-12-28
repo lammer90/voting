@@ -46,6 +46,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public User getUser(int id) {
+        return userRepository.get(id);
+    }
+
+    @Override
     public void deleteUser(int id) {
         userRepository.delete(id);
     }
@@ -58,6 +63,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Dish addDish(Dish dish) {
         return dishRepository.save(dish);
+    }
+
+    @Override
+    public void updateDish(Dish dish) {
+        dishRepository.save(dish);
     }
 
     @Override
