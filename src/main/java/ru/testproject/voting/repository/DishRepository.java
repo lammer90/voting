@@ -12,7 +12,7 @@ public interface DishRepository {
 
     Dish get(int id);
 
-    List<Dish> getAll();
+    List<Dish> getAllFilterDate(LocalDate localDate);
 
     List<Dish> getAllFilterRestAndDate(int rest_id, LocalDate date);
 }

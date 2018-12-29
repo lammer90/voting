@@ -6,7 +6,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,28 +27,44 @@ public class User extends AbstractNamedEntity{
 
     @Column(name = "password")
     @NotBlank
-    @Size(min = 5, max = 100)
+    @Size(min = 4, max = 100)
     private String password;
 
     @Column(name = "registered")
     @NotNull
-    private Date registered = new Date();
+    private LocalDate registered = LocalDate.now();
 
     public User() {
     }
 
-    public User(String name, Set<Role> roles, String password, Date registered) {
+    public User(String name, String password, Set<Role> roles) {
         super(name);
         this.roles = roles;
         this.password = password;
-        this.registered = registered;
     }
 
-    public User(Integer id, String name, Set<Role> roles, String password, Date registered) {
+    public User(Integer id, String name,  String password, Set<Role> roles) {
         super(id, name);
         this.roles = roles;
         this.password = password;
-        this.registered = registered;
+    }
+
+    public User(String name, String password, Role... roles) {
+        super(name);
+        this.roles = Set.of(roles);
+        this.password = password;
+    }
+
+    public User(Integer id, String name, String password, Role... roles) {
+        super(id, name);
+        this.roles = Set.of(roles);
+        this.password = password;
+    }
+
+    public User(User user) {
+        super(user.getId(), user.getName());
+        this.roles = user.getRoles();
+        this.password = user.getPassword();
     }
 
     public Set<Role> getRoles() {
@@ -57,7 +75,7 @@ public class User extends AbstractNamedEntity{
         return password;
     }
 
-    public Date getRegistered() {
+    public LocalDate getRegistered() {
         return registered;
     }
 
@@ -69,7 +87,7 @@ public class User extends AbstractNamedEntity{
         this.password = password;
     }
 
-    public void setRegistered(Date registered) {
+    public void setRegistered(LocalDate registered) {
         this.registered = registered;
     }
 

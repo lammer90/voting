@@ -1,6 +1,7 @@
 package ru.testproject.voting.util;
 
 import ru.testproject.voting.model.AbstractBaseEntity;
+import ru.testproject.voting.to.DishTo;
 import ru.testproject.voting.util.exception.NotFoundException;
 
 import java.time.LocalTime;

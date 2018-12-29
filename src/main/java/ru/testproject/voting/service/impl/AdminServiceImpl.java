@@ -2,6 +2,7 @@ package ru.testproject.voting.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
@@ -10,7 +11,10 @@ import ru.testproject.voting.repository.DishRepository;
 import ru.testproject.voting.repository.RestaurantRepository;
 import ru.testproject.voting.repository.UserRepository;
 import ru.testproject.voting.service.AdminService;
+import ru.testproject.voting.to.DishTo;
+import ru.testproject.voting.util.exception.TimeLimitException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ru.testproject.voting.util.VerifyUtil.*;
@@ -66,24 +70,39 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Dish addDish(Dish dish) {
-        Assert.notNull(dish, "Dish must not be null");
-        return dishRepository.save(dish);
+    public Dish addDish(DishTo dishTo) {
+        Assert.notNull(dishTo, "Dish must not be null");
+        return dishRepository.save(new Dish(dishTo));
+    }
+
+    @Transactional
+    @Override
+    public void updateDish(DishTo dishTo) {
+        Assert.notNull(dishTo, "Dish must not be null");
+        verifyDishDate(dishTo.getId());
+        chekObject(dishRepository.save(new Dish(dishTo)), "No dish found");
     }
 
     @Override
-    public void updateDish(Dish dish) {
-        Assert.notNull(dish, "Dish must not be null");
-        chekObject(dishRepository.save(dish), "No dish found");
-    }
-
-    @Override
-    public Dish getDish(int id) {
-        return chekObject(dishRepository.get(id), "No dish found");
+    public List<Dish> getAllDishByDate(LocalDate localDate) {
+        return dishRepository.getAllFilterDate(localDate);
     }
 
     @Override
     public void deleteDish(int id) {
+        verifyDishDate(id);
         checkNotFound(dishRepository.delete(id), "No dish found");
+    }
+
+    @Override
+    public Dish getDish(int id) {
+        //verifyDishDate(id);
+        return chekObject(dishRepository.get(id), "No dish found");
+    }
+
+    private void verifyDishDate(int id){
+        if (!dishRepository.get(id).getDate().equals(LocalDate.now())){
+            throw new TimeLimitException("You can not change the old dishes");
+        }
     }
 }

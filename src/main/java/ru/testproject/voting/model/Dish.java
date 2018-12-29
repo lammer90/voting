@@ -1,6 +1,7 @@
 package ru.testproject.voting.model;
 
 import org.hibernate.validator.constraints.Range;
+import ru.testproject.voting.to.DishTo;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
@@ -27,18 +28,32 @@ public class Dish extends AbstractNamedEntity{
     public Dish() {
     }
 
-    public Dish(String name, int price, Restaurant restaurant, LocalDate date) {
+    public Dish(String name, double price, Restaurant restaurant, LocalDate date) {
         super(name);
         this.price = price;
         this.restaurant = restaurant;
         this.date = date;
     }
 
-    public Dish(Integer id, String name, int price, Restaurant restaurant, LocalDate date) {
+    public Dish(Integer id, String name, double price, Restaurant restaurant, LocalDate date) {
         super(id, name);
         this.price = price;
         this.restaurant = restaurant;
         this.date = date;
+    }
+
+    public Dish(Dish dish) {
+        super(dish.getId(), dish.getName());
+        this.price = dish.getPrice();
+        this.restaurant = dish.getRestaurant();
+        this.date = LocalDate.now();
+    }
+
+    public Dish(DishTo dishTo) {
+        super(dishTo.getId(), dishTo.getName());
+        this.price = dishTo.getPrice();
+        this.restaurant = dishTo.getRestaurant();
+        this.date = LocalDate.now();
     }
 
     public double getPrice() {

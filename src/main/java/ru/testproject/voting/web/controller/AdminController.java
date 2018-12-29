@@ -6,48 +6,57 @@ import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.model.User;
 import ru.testproject.voting.service.AdminService;
+import ru.testproject.voting.to.DishTo;
 
 import java.util.List;
 
 @Controller
-public class AdminController extends AbstractController{
+public class AdminController extends AbstractController {
 
     @Autowired
     private AdminService adminService;
 
-    public Restaurant addRestaurant(String restName){
+    public Restaurant addRestaurant(String restName) {
         return adminService.addRestaurant(restName);
     }
 
-    public void deleteRestaurant(int id){
+    public void deleteRestaurant(int id) {
         adminService.deleteRestaurant(id);
     }
 
-    public User addUser(User user){
+    public User addUser(User user) {
         return adminService.addUser(user);
     }
 
-    public void updateUser(User user){
+    public void updateUser(User user) {
         adminService.updateUser(user);
     }
 
-    public void deleteUser(int id){
+    public void deleteUser(int id) {
         adminService.deleteUser(id);
     }
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return adminService.getAllUsers();
     }
 
-    public Dish addDish(Dish dish){
-        return adminService.addDish(dish);
+    public Dish addDishToday(DishTo dishTo) {
+        return adminService.addDish(dishTo);
     }
 
-    public Dish getDish(int id){
+    public void updateDishToday(DishTo dishTo) {
+        adminService.updateDish(dishTo);
+    }
+
+    public Dish getDish(int id) {
         return adminService.getDish(id);
     }
 
-    public void deleteDish(int id){
+    public List<Dish> getAllDishToday() {
+        return adminService.getAllDishToday();
+    }
+
+    public void deleteDishToday(int id) {
         adminService.deleteDish(id);
     }
 }

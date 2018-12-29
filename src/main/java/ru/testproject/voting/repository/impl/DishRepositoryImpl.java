@@ -35,12 +35,12 @@ public class DishRepositoryImpl implements DishRepository {
     }
 
     @Override
-    public List<Dish> getAll() {
-        return jpaDishRepository.findAll();
+    public List<Dish> getAllFilterDate(LocalDate localDate) {
+        return jpaDishRepository.findAllByDate(localDate);
     }
 
     @Override
     public List<Dish> getAllFilterRestAndDate(int rest_id, LocalDate date) {
-        return jpaDishRepository.findAllByDateAndRestaurant_Id(date, rest_id);
+        return jpaDishRepository.findAllByDateAndRestaurant_IdOrderByName(date, rest_id);
     }
 }
