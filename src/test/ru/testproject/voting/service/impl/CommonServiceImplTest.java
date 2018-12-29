@@ -22,16 +22,4 @@ public abstract class CommonServiceImplTest {
 
     @Autowired
     protected CommonService commonService;
-
-    @Test
-    void getAllDishesFilterByRestToday() {
-    }
-
-    @Test
-    void getAllRest() {
-    }
-
-    @Test
-    void getAllRestWithVotesAndDishesToday() {
-    }
 }

@@ -14,11 +14,11 @@ public class UserController extends AbstractController {
 
     public Vote addOrUpdateVote(int restId) {
         int userId = SecurityUtil.authUserId();
-        return userService.addOrUpdateVote(restId, userId);
+        return userService.addOrUpdateVoteToday(restId, userId);
     }
 
     public void deleteVoteToday() {
         int userId = SecurityUtil.authUserId();
-        userService.deleteVote(userId);
+        userService.deleteVoteToday(userId);
     }
 }

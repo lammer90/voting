@@ -1,14 +1,19 @@
 package ru.testproject.voting.service;
 
-import ru.testproject.voting.model.Dish;
-import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.model.Vote;
-import ru.testproject.voting.to.RestaurantTo;
 
-import java.util.List;
+import java.time.LocalDate;
 
 public interface UserService {
-    Vote addOrUpdateVote(int restId, int userId);
+    default Vote addOrUpdateVoteToday(int restId, int userId) {
+        return addOrUpdateVote(restId, userId, LocalDate.now(), 11);
+    }
 
-    void deleteVote(int userId);
+    default void deleteVoteToday(int userId) {
+        deleteVote(userId, LocalDate.now(), 11);
+    }
+
+    Vote addOrUpdateVote(int restId, int userId, LocalDate date, int time);
+
+    void deleteVote(int userId, LocalDate date, int time);
 }

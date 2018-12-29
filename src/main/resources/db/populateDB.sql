@@ -62,11 +62,11 @@ VALUES
 
 
 INSERT INTO votes (date_time, restaurant_id, user_id)
-VALUES (now(), 100006, 100000),
-       (now(), 100007, 100001),
-       (now(), 100008, 100002),
-       (now(), 100007, 100003),
-       (now(), 100007, 100004);
+VALUES (date_trunc('day', now()), 100006, 100000),
+       (date_trunc('day', now()), 100007, 100001),
+       (date_trunc('day', now()), 100008, 100002),
+     /*  (date_trunc('day', now()), 100007, 100003),*/
+       (date_trunc('day', now()), 100007, 100004);
 /*('2018-11-30', 100006, 100000),
 ('2018-11-30', 100007, 100001),
 ('2018-11-30', 100008, 100002),

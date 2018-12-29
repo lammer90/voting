@@ -2,7 +2,6 @@ package ru.testproject.voting.service.impl;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
 import ru.testproject.voting.TestUtil;
 import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
@@ -16,6 +15,7 @@ import ru.testproject.voting.util.exception.TimeLimitException;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.testproject.voting.TestUtil.*;
 
@@ -102,7 +102,7 @@ class AdminServiceImplTest extends CommonServiceImplTest {
 
     @Test
     void getAllDishByDate() {
-        Assert.isTrue(adminService.getAllDishByDate(LocalDate.now()).size() == 9);
+        assertEquals(9, adminService.getAllDishByDate(LocalDate.now()).size());
     }
 
     @Test

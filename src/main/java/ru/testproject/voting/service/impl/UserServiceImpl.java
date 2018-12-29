@@ -27,11 +27,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public Vote addOrUpdateVote(int restId, int userId) {
+    public Vote addOrUpdateVote(int restId, int userId, LocalDate today, int time) {
         Restaurant restaurant = chekObject(restaurantRepository.get(restId), "No restaurant found");
-        LocalDate today = LocalDate.now();
-        if (chekTime()) {
-            voteRepository.delete(LocalDate.now(), userId);
+        if (chekTime(time)) {
+            voteRepository.delete(today, userId);
         }
         if (voteRepository.getByDate(today, userId) == null) {
             return addVote(new Vote(today, restaurant), userId);
@@ -41,11 +40,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteVote(int userId) {
-        if (!chekTime()) {
+    public void deleteVote(int userId, LocalDate today, int time) {
+        if (!chekTime(time)) {
             throw new TimeLimitException("Voting time is over");
         }
-        checkNotFound(voteRepository.delete(LocalDate.now(), userId), "No vote found");
+        checkNotFound(voteRepository.delete(today, userId), "No vote found");
     }
 
     private Vote addVote(Vote vote, int userId) {

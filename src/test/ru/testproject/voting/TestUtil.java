@@ -4,9 +4,12 @@ import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.model.Role;
 import ru.testproject.voting.model.User;
+import ru.testproject.voting.to.RestaurantTo;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.time.LocalDate.of;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,6 +40,12 @@ public class TestUtil {
     public static final Dish DISH_1_PASTA = new Dish("паста с беконом", 120.00, RESTAURANT_2, LocalDate.now());
     public static final Dish DISH_2_PASTA = new Dish("салат цезарь", 120.00, RESTAURANT_2, LocalDate.now());
     public static final Dish DISH_3_PASTA = new Dish("булочка белая", 20.00, RESTAURANT_2, LocalDate.now());
+
+    public static final List<RestaurantTo> RESTAURANTS_TO = new ArrayList<>();
+
+    static {
+
+    }
 
     public static <T> void assertMatch(T actual, T expected, String...ignoreProps) {
         assertThat(actual).isEqualToIgnoringGivenFields(expected, ignoreProps);

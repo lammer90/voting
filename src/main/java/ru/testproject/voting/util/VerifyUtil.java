@@ -1,7 +1,5 @@
 package ru.testproject.voting.util;
 
-import ru.testproject.voting.model.AbstractBaseEntity;
-import ru.testproject.voting.to.DishTo;
 import ru.testproject.voting.util.exception.NotFoundException;
 
 import java.time.LocalTime;
@@ -27,7 +25,7 @@ public class VerifyUtil {
         }
     }
 
-    public static boolean chekTime() {
-        return LocalTime.now().getHour() < 11;
+    public static boolean chekTime(int time) {
+        return LocalTime.now().getHour() < time;
     }
 }
