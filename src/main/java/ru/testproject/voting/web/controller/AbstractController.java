@@ -10,7 +10,6 @@ import ru.testproject.voting.to.RestaurantTo;
 import java.time.LocalDate;
 import java.util.List;
 
-@Controller
 public abstract class AbstractController {
 
     @Autowired

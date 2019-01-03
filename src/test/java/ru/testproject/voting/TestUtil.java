@@ -1,11 +1,14 @@
 package ru.testproject.voting;
 
+import org.springframework.test.web.servlet.MvcResult;
 import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.model.Role;
 import ru.testproject.voting.model.User;
 import ru.testproject.voting.to.RestaurantTo;
+import ru.testproject.voting.util.JsonUtil;
 
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -53,5 +56,9 @@ public class TestUtil {
 
     public static <T> void assertMatch(Iterable<T> actual, Iterable<T> expected, String...ignoreProps) {
         assertThat(actual).usingElementComparatorIgnoringFields(ignoreProps).isEqualTo(expected);
+    }
+
+    public static <T> T readFromJsonMvcResult(MvcResult result, Class<T> clazz) throws UnsupportedEncodingException {
+        return JsonUtil.readValue(result.getResponse().getContentAsString(), clazz);
     }
 }

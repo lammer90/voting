@@ -10,8 +10,7 @@ import ru.testproject.voting.to.DishTo;
 
 import java.util.List;
 
-@Controller
-public class AdminController extends AbstractController {
+public abstract class AdminController extends AbstractController {
 
     @Autowired
     private AdminService adminService;
@@ -28,8 +27,12 @@ public class AdminController extends AbstractController {
         return adminService.addUser(user);
     }
 
-    public void updateUser(User user) {
+    public void updateUser(User user, int id) {
         adminService.updateUser(user);
+    }
+
+    public User getUser(int id){
+        return adminService.getUser(id);
     }
 
     public void deleteUser(int id) {

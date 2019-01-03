@@ -6,8 +6,8 @@ import ru.testproject.voting.model.Vote;
 import ru.testproject.voting.service.UserService;
 import ru.testproject.voting.web.SecurityUtil;
 
-@Controller
-public class UserController extends AbstractController {
+
+public abstract class UserController extends AbstractController {
 
     @Autowired
     private UserService userService;

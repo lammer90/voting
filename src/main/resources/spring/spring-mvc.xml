@@ -10,11 +10,13 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+    <bean class="ru.testproject.voting.util.JacksonObjectMapper" id="objectMapper" factory-method="getMapper"/>
+
     <mvc:annotation-driven>
         <mvc:message-converters>
-            <!--<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="objectMapper" ref="objectMapper"/>
-            </bean>-->
+            </bean>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
