@@ -7,6 +7,7 @@ import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.model.User;
 import ru.testproject.voting.service.AdminService;
 import ru.testproject.voting.to.DishTo;
+import ru.testproject.voting.util.VerifyUtil;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public abstract class AdminController extends AbstractController {
     }
 
     public void updateUser(User user, int id) {
+        VerifyUtil.assureIdConsistent(user, id);
         adminService.updateUser(user);
     }
 

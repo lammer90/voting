@@ -40,22 +40,27 @@ public class AdminRestController extends AdminController {
     }
 
     @Override
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/users/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void updateUser(@RequestBody User user, @PathVariable("id") int id) {
         super.updateUser(user, id);
     }
 
-    public User getUser(int id){
+    @Override
+    @GetMapping(value = "/users/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public User getUser(@PathVariable("id")int id){
         return super.getUser(id);
     }
 
     @Override
-    public void deleteUser(int id) {
+    @DeleteMapping(value = "/users/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable("id")int id) {
         super.deleteUser(id);
     }
 
     @Override
+    @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAllUsers() {
         return super.getAllUsers();
     }
