@@ -10,7 +10,7 @@ import ru.testproject.voting.to.RestaurantTo;
 import java.time.LocalDate;
 import java.util.List;
 
-public abstract class AbstractController {
+public abstract class AbstractCommonController {
 
     @Autowired
     protected CommonService commonService;
