@@ -31,7 +31,7 @@ public class AdminRestController extends AdminController {
     }
 
     @PostMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> createUserWithLocation(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         User created = super.addUser(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/users" + "/{id}")
@@ -48,14 +48,14 @@ public class AdminRestController extends AdminController {
 
     @Override
     @GetMapping(value = "/users/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public User getUser(@PathVariable("id")int id){
+    public User getUser(@PathVariable("id") int id) {
         return super.getUser(id);
     }
 
     @Override
     @DeleteMapping(value = "/users/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable("id")int id) {
+    public void deleteUser(@PathVariable("id") int id) {
         super.deleteUser(id);
     }
 
@@ -65,28 +65,38 @@ public class AdminRestController extends AdminController {
         return super.getAllUsers();
     }
 
-    @Override
-    public Dish addDishToday(DishTo dishTo) {
-        return super.addDishToday(dishTo);
+    @PostMapping(value = "/dishes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Dish> createDishToday(@RequestBody DishTo dishTo) {
+        Dish dish = super.addDishToday(dishTo);
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/dishes" + "/{id}")
+                .buildAndExpand(dish.getId()).toUri();
+        return ResponseEntity.created(uriOfNewResource).body(dish);
     }
 
     @Override
-    public void updateDishToday(DishTo dishTo) {
-        super.updateDishToday(dishTo);
+    @PutMapping(value = "/dishes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void updateDishToday(@RequestBody DishTo dishTo, @PathVariable("id") int id) {
+        super.updateDishToday(dishTo, id);
     }
 
     @Override
-    public Dish getDish(int id) {
+    @GetMapping(value = "/dishes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Dish getDish(@PathVariable("id") int id) {
         return super.getDish(id);
     }
 
     @Override
+    @GetMapping(value = "/dishes", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Dish> getAllDishToday() {
         return super.getAllDishToday();
     }
 
     @Override
-    public void deleteDishToday(int id) {
+    @DeleteMapping(value = "/dishes/{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteDishToday(@PathVariable("id") int id) {
         super.deleteDishToday(id);
     }
 }

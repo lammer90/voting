@@ -76,7 +76,7 @@ class AdminServiceImplTest extends CommonServiceImplTest {
 
     @Test
     void addDish() {
-        DishTo newDish = new DishTo("Новый бургер", 150.00, RESTAURANT_1);
+        DishTo newDish = new DishTo("Новый бургер", 15000, RESTAURANT_1);
         adminService.addDish(newDish);
         TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_1_BURGER, new Dish(newDish), DISH_2_BURGER, DISH_3_BURGER), "id", "restaurant");
     }
@@ -93,7 +93,7 @@ class AdminServiceImplTest extends CommonServiceImplTest {
     void updateDish() {
         int id = commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()).get(0).getId();
         DishTo newDish = new DishTo(adminService.getDish(id));
-        newDish.setPrice(200.00);
+        newDish.setPrice(20000);
         newDish.setName("Обновленный бургер");
         adminService.updateDish(newDish);
 

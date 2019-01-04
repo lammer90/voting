@@ -13,8 +13,8 @@ import java.time.LocalDate;
 public class Dish extends AbstractNamedEntity{
 
     @Column(name = "price")
-    @Digits(integer = 20, fraction = 2)
-    private double price;
+    @Range(min = 10, max = Integer.MAX_VALUE)
+    private int price;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id")
@@ -28,14 +28,14 @@ public class Dish extends AbstractNamedEntity{
     public Dish() {
     }
 
-    public Dish(String name, double price, Restaurant restaurant, LocalDate date) {
+    public Dish(String name, int price, Restaurant restaurant, LocalDate date) {
         super(name);
         this.price = price;
         this.restaurant = restaurant;
         this.date = date;
     }
 
-    public Dish(Integer id, String name, double price, Restaurant restaurant, LocalDate date) {
+    public Dish(Integer id, String name, int price, Restaurant restaurant, LocalDate date) {
         super(id, name);
         this.price = price;
         this.restaurant = restaurant;
@@ -56,7 +56,7 @@ public class Dish extends AbstractNamedEntity{
         this.date = LocalDate.now();
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -68,7 +68,7 @@ public class Dish extends AbstractNamedEntity{
         return date;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

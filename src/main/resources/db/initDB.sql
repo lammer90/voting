@@ -37,7 +37,7 @@ CREATE TABLE restaurants
   id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name          VARCHAR(255) NOT NULL,
   date_time     TIMESTAMP    NOT NULL,
-  price         REAL         NOT NULL,
+  price         INTEGER      NOT NULL,
   restaurant_id INTEGER      NOT NULL,
   CONSTRAINT dishes_name_date_rest_idx UNIQUE (name, date_time, restaurant_id),
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE

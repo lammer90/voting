@@ -48,7 +48,8 @@ public abstract class AdminController extends AbstractCommonController {
         return adminService.addDish(dishTo);
     }
 
-    public void updateDishToday(DishTo dishTo) {
+    public void updateDishToday(DishTo dishTo, int id) {
+        VerifyUtil.assureIdConsistent(dishTo, id);
         adminService.updateDish(dishTo);
     }
 

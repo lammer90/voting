@@ -4,12 +4,16 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import ru.testproject.voting.TestUtil;
+import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.model.Role;
 import ru.testproject.voting.model.User;
 import ru.testproject.voting.service.CommonService;
+import ru.testproject.voting.to.DishTo;
 import ru.testproject.voting.util.JsonUtil;
+import ru.testproject.voting.util.exception.TimeLimitException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,7 +52,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
     }
 
     @Test
-    void createUserWithLocation() throws Exception {
+    void createUser() throws Exception {
         User newUser = new User("User7", "password7", Role.ROLE_USER);
         mockMvc.perform(post("/admin/users")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -100,22 +104,57 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
     }
 
     @Test
-    void addDishToday() {
+    void createDishToday() throws Exception {
+        DishTo newDish = new DishTo("Новый бургер", 15000, RESTAURANT_1);
+        mockMvc.perform(post("/admin/dishes")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(newDish)))
+                .andExpect(status().is2xxSuccessful())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(result -> newDish.setId(TestUtil.readFromJsonMvcResult(result, Dish.class).getId()));
+        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_1_BURGER, new Dish(newDish), DISH_2_BURGER, DISH_3_BURGER), "id", "restaurant");
     }
 
     @Test
-    void updateDishToday() {
+    void updateDishToday() throws Exception {
+        int id = commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()).get(0).getId();
+        DishTo newDish = new DishTo(adminService.getDish(id));
+        newDish.setPrice(20000);
+        newDish.setName("Обновленный бургер");
+        mockMvc.perform(put("/admin/dishes/" + newDish.getId())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(newDish)))
+                .andExpect(status().isNoContent())
+                .andDo(print());
+        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(new Dish(newDish), DISH_2_BURGER, DISH_3_BURGER), "id", "restaurant");
     }
 
     @Test
-    void getDish() {
+    void getDish() throws Exception {
+        int id = commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()).get(0).getId();
+        mockMvc.perform(get("/admin/dishes/" + id))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(result -> assertMatch(readListFromJsonMvcResult(result, Dish.class), List.of(DISH_1_BURGER), "id", "restaurant"));
     }
 
     @Test
-    void getAllDishToday() {
+    void getAllDishToday() throws Exception {
+        mockMvc.perform(get("/admin/dishes"))
+                .andExpect(status().is2xxSuccessful())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(result -> assertEquals(9, readListFromJsonMvcResult(result, Dish.class).size()));
     }
 
     @Test
-    void deleteDishToday() {
+    void deleteDishToday() throws Exception {
+        int id = commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()).get(0).getId();
+        mockMvc.perform(delete("/admin/dishes/" + id))
+                .andExpect(status().isNoContent())
+                .andDo(print());
+        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_2_BURGER, DISH_3_BURGER), "id", "restaurant");
     }
 }

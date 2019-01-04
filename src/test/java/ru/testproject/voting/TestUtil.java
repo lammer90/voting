@@ -5,6 +5,7 @@ import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.model.Role;
 import ru.testproject.voting.model.User;
+import ru.testproject.voting.to.DishTo;
 import ru.testproject.voting.to.RestaurantTo;
 import ru.testproject.voting.util.JsonUtil;
 
@@ -32,22 +33,21 @@ public class TestUtil {
     public static final Restaurant RESTAURANT_2 = new Restaurant(100008, "PASTA BAR");
     public static final Restaurant RESTAURANT_3 = new Restaurant(100006, "SUSHI MARKET");
 
-    public static final Dish DISH_1_SUSHI = new Dish("ролл с угрем", 100.00, RESTAURANT_3, LocalDate.now());
-    public static final Dish DISH_2_SUSHI = new Dish("суши с лососем", 120.00, RESTAURANT_3, LocalDate.now());
-    public static final Dish DISH_3_SUSHI = new Dish("острый суп", 50.00, RESTAURANT_3, LocalDate.now());
+    public static final Dish DISH_1_SUSHI = new Dish("ролл с угрем", 10000, RESTAURANT_3, LocalDate.now());
+    public static final Dish DISH_2_SUSHI = new Dish("суши с лососем", 12000, RESTAURANT_3, LocalDate.now());
+    public static final Dish DISH_3_SUSHI = new Dish("острый суп", 5000, RESTAURANT_3, LocalDate.now());
 
-    public static final Dish DISH_1_BURGER = new Dish("бургер с говядиной", 140.00, RESTAURANT_1, LocalDate.now());
-    public static final Dish DISH_2_BURGER = new Dish("салат из овощей", 30.00, RESTAURANT_1, LocalDate.now());
-    public static final Dish DISH_3_BURGER = new Dish("суп грибной", 100.00, RESTAURANT_1, LocalDate.now());
+    public static final Dish DISH_1_BURGER = new Dish("бургер с говядиной", 14000, RESTAURANT_1, LocalDate.now());
+    public static final Dish DISH_2_BURGER = new Dish("салат из овощей", 3000, RESTAURANT_1, LocalDate.now());
+    public static final Dish DISH_3_BURGER = new Dish("суп грибной", 10000, RESTAURANT_1, LocalDate.now());
 
-    public static final Dish DISH_1_PASTA = new Dish("паста с беконом", 120.00, RESTAURANT_2, LocalDate.now());
-    public static final Dish DISH_2_PASTA = new Dish("салат цезарь", 120.00, RESTAURANT_2, LocalDate.now());
-    public static final Dish DISH_3_PASTA = new Dish("булочка белая", 20.00, RESTAURANT_2, LocalDate.now());
+    public static final Dish DISH_1_PASTA = new Dish("паста с беконом", 12000, RESTAURANT_2, LocalDate.now());
+    public static final Dish DISH_2_PASTA = new Dish("салат цезарь", 12000, RESTAURANT_2, LocalDate.now());
+    public static final Dish DISH_3_PASTA = new Dish("булочка белая", 2000, RESTAURANT_2, LocalDate.now());
 
     public static final List<RestaurantTo> RESTAURANTS_TO = new ArrayList<>();
 
     static {
-
     }
 
     public static <T> void assertMatch(T actual, T expected, String...ignoreProps) {

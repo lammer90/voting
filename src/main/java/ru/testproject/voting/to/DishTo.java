@@ -5,19 +5,19 @@ import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 
 public class DishTo extends AbstractNamedEntity {
-    private double price;
+    private int price;
     private Restaurant restaurant;
 
     public DishTo() {
     }
 
-    public DishTo(String name, double price, Restaurant restaurant) {
+    public DishTo(String name, int price, Restaurant restaurant) {
         super(name);
         this.price = price;
         this.restaurant = restaurant;
     }
 
-    public DishTo(Integer id, String name, double price, Restaurant restaurant) {
+    public DishTo(Integer id, String name, int price, Restaurant restaurant) {
         super(id, name);
         this.price = price;
         this.restaurant = restaurant;
@@ -29,7 +29,7 @@ public class DishTo extends AbstractNamedEntity {
         this.restaurant = dish.getRestaurant();
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -37,7 +37,7 @@ public class DishTo extends AbstractNamedEntity {
         return restaurant;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
