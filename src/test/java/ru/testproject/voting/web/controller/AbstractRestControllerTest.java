@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import ru.testproject.voting.service.AdminService;
+import ru.testproject.voting.service.CommonService;
 
 import javax.annotation.PostConstruct;
 
@@ -31,7 +32,7 @@ public class AbstractRestControllerTest {
     protected MockMvc mockMvc;
 
     @Autowired
-    protected AdminService adminService;
+    protected CommonService commonService;
 
     @Autowired
     private WebApplicationContext webApplicationContext;

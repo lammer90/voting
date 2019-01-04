@@ -5,6 +5,8 @@ import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.model.Role;
 import ru.testproject.voting.model.User;
+import ru.testproject.voting.service.CommonService;
+import ru.testproject.voting.service.impl.UserServiceImplTest;
 import ru.testproject.voting.to.DishTo;
 import ru.testproject.voting.to.RestaurantTo;
 import ru.testproject.voting.util.JsonUtil;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import static java.time.LocalDate.of;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestUtil {
 
@@ -46,6 +49,19 @@ public class TestUtil {
     public static final Dish DISH_3_PASTA = new Dish("булочка белая", 2000, RESTAURANT_2, LocalDate.now());
 
     public static final List<RestaurantTo> RESTAURANTS_TO = new ArrayList<>();
+
+    public static Testing test = (service, restId, count) -> {
+        service.getAllRestWithVotesAndDishesToday()
+                .forEach(r -> {
+                    if (r.getId().equals(restId)) {
+                        assertEquals(r.getCountOfVotes(), count);
+                    }
+                });
+    };
+
+    public interface Testing {
+        void runTest(CommonService commonService, int restId, int count);
+    }
 
     static {
     }

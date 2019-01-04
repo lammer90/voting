@@ -8,6 +8,7 @@ import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.model.Role;
 import ru.testproject.voting.model.User;
+import ru.testproject.voting.service.AdminService;
 import ru.testproject.voting.service.CommonService;
 import ru.testproject.voting.to.DishTo;
 import ru.testproject.voting.util.JsonUtil;
@@ -28,7 +29,7 @@ import static ru.testproject.voting.TestUtil.USER_5;
 class AdminRestControllerTest extends AbstractRestControllerTest {
 
     @Autowired
-    CommonService commonService;
+    AdminService adminService;
 
     @Test
     void addRestaurant() throws Exception {
