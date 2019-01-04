@@ -69,18 +69,25 @@ public class AdminServiceImpl implements AdminService {
         return userRepository.getAll();
     }
 
+    @Transactional
     @Override
     public Dish addDish(DishTo dishTo) {
+        Restaurant restaurantRef = chekObject(restaurantRepository.getReference(dishTo.getRestaurant()), "No restaurant found");
         Assert.notNull(dishTo, "Dish must not be null");
-        return dishRepository.save(new Dish(dishTo));
+        Dish newDish = new Dish(dishTo);
+        newDish.setRestaurant(restaurantRef);
+        return dishRepository.save(newDish);
     }
 
     @Transactional
     @Override
     public void updateDish(DishTo dishTo) {
+        Restaurant restaurantRef = chekObject(restaurantRepository.getReference(dishTo.getRestaurant()), "No restaurant found");
         Assert.notNull(dishTo, "Dish must not be null");
         verifyDishDate(dishTo.getId());
-        chekObject(dishRepository.save(new Dish(dishTo)), "No dish found");
+        Dish newDish = new Dish(dishTo);
+        newDish.setRestaurant(restaurantRef);
+        chekObject(dishRepository.save(newDish), "No dish found");
     }
 
     @Override

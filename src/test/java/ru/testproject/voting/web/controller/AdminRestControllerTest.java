@@ -106,7 +106,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
 
     @Test
     void createDishToday() throws Exception {
-        DishTo newDish = new DishTo("Новый бургер", 15000, RESTAURANT_1);
+        DishTo newDish = new DishTo("Новый бургер", 15000, RESTAURANT_1.getId());
         mockMvc.perform(post("/admin/dishes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newDish)))

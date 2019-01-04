@@ -52,7 +52,7 @@ public class Dish extends AbstractNamedEntity{
     public Dish(DishTo dishTo) {
         super(dishTo.getId(), dishTo.getName());
         this.price = dishTo.getPrice();
-        this.restaurant = dishTo.getRestaurant();
+        //this.restaurant = dishTo.getRestaurant();
         this.date = LocalDate.now();
     }
 

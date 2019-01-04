@@ -28,12 +28,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public Vote addOrUpdateVote(int restId, int userId, LocalDate today, int time) {
-        Restaurant restaurant = chekObject(restaurantRepository.get(restId), "No restaurant found");
+        Restaurant restaurantRef = chekObject(restaurantRepository.getReference(restId), "No restaurant found");
         if (chekTime(time)) {
             voteRepository.delete(today, userId);
         }
         if (voteRepository.getByDate(today, userId) == null) {
-            return addVote(new Vote(today, restaurant), userId);
+            Vote newVote = new Vote(today);
+            newVote.setRestaurant(restaurantRef);
+            return addVote(newVote, userId);
         } else {
             throw new TimeLimitException("Voting time is over");
         }

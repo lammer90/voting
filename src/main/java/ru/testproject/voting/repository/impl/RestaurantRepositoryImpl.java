@@ -43,4 +43,9 @@ public class RestaurantRepositoryImpl implements RestaurantRepository {
     public List<Restaurant> getAllWithVotesAndDishesByDate(LocalDate date) {
         return jpaRestaurantRepository.getAllWithVotesAndDishesByDate(date);
     }
+
+    @Override
+    public Restaurant getReference(int restId) {
+        return jpaRestaurantRepository.getOne(restId);
+    }
 }

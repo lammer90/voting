@@ -6,43 +6,42 @@ import ru.testproject.voting.model.Restaurant;
 
 public class DishTo extends AbstractNamedEntity {
     private int price;
-    private Restaurant restaurant;
+    private int restaurantId;
 
     public DishTo() {
     }
 
-    public DishTo(String name, int price, Restaurant restaurant) {
+    public DishTo(String name, int price, int restaurantId) {
         super(name);
         this.price = price;
-        this.restaurant = restaurant;
+        this.restaurantId = restaurantId;
     }
 
-    public DishTo(Integer id, String name, int price, Restaurant restaurant) {
+    public DishTo(Integer id, String name, int price, int restaurantId) {
         super(id, name);
         this.price = price;
-        this.restaurant = restaurant;
+        this.restaurantId = restaurantId;
     }
 
     public DishTo(Dish dish) {
         super(dish.getId(), dish.getName());
         this.price = dish.getPrice();
-        this.restaurant = dish.getRestaurant();
+        this.restaurantId = dish.getRestaurant().getId();
     }
 
     public int getPrice() {
         return price;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public int getRestaurant() {
+        return restaurantId;
     }
 
     public void setPrice(int price) {
         this.price = price;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public void setRestaurant(int restaurantId) {
+        this.restaurantId = restaurantId;
     }
-
 }

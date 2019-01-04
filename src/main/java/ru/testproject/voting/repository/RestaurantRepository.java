@@ -15,4 +15,6 @@ public interface RestaurantRepository {
     List<Restaurant> getAll();
 
     List<Restaurant> getAllWithVotesAndDishesByDate(LocalDate date);
+
+    Restaurant getReference(int restId);
 }

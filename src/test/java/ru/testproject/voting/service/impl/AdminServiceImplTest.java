@@ -76,7 +76,7 @@ class AdminServiceImplTest extends CommonServiceImplTest {
 
     @Test
     void addDish() {
-        DishTo newDish = new DishTo("Новый бургер", 15000, RESTAURANT_1);
+        DishTo newDish = new DishTo("Новый бургер", 15000, RESTAURANT_1.getId());
         adminService.addDish(newDish);
         TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_1_BURGER, new Dish(newDish), DISH_2_BURGER, DISH_3_BURGER), "id", "restaurant");
     }
