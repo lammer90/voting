@@ -35,6 +35,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
     void addRestaurant() throws Exception {
         Restaurant newRestaurant = new Restaurant("Test Restaurant");
         mockMvc.perform(post("/admin/restaurant")
+                .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newRestaurant)))
                 .andExpect(status().isOk())
@@ -46,7 +47,8 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
 
     @Test
     void deleteRestaurant() throws Exception {
-        mockMvc.perform(delete("/admin/restaurant/" + RESTAURANT_3.getId()))
+        mockMvc.perform(delete("/admin/restaurant/" + RESTAURANT_3.getId())
+                .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isNoContent())
                 .andDo(print());
         TestUtil.assertMatch(commonService.getAllRest(), List.of(RESTAURANT_1, RESTAURANT_2), "dishes", "votes");
@@ -56,6 +58,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
     void createUser() throws Exception {
         User newUser = new User("User7", "password7", Role.ROLE_USER);
         mockMvc.perform(post("/admin/users")
+                .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newUser)))
                 .andExpect(status().is2xxSuccessful())
@@ -71,6 +74,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
         newUser.setName("new Name");
         newUser.setPassword("new Pass");
         mockMvc.perform(put("/admin/users/" + newUser.getId())
+                .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newUser)))
                 .andExpect(status().isNoContent())
@@ -80,7 +84,8 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
 
     @Test
     void getUser() throws Exception {
-        mockMvc.perform(get("/admin/users/" + USER_1.getId()))
+        mockMvc.perform(get("/admin/users/" + USER_1.getId())
+                .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -89,7 +94,8 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
 
     @Test
     void deleteUser() throws Exception {
-        mockMvc.perform(delete("/admin/users/" + USER_1.getId()))
+        mockMvc.perform(delete("/admin/users/" + USER_1.getId())
+                .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isNoContent())
                 .andDo(print());
         TestUtil.assertMatch(adminService.getAllUsers(), List.of(ADMIN, USER_2, USER_3, USER_4, USER_5), "votes");
@@ -97,7 +103,8 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
 
     @Test
     void getAllUsers() throws Exception {
-        mockMvc.perform(get("/admin/users"))
+        mockMvc.perform(get("/admin/users")
+                .with(userHttpBasic(ADMIN)))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -108,6 +115,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
     void createDishToday() throws Exception {
         DishTo newDish = new DishTo("Новый бургер", 15000, RESTAURANT_1.getId());
         mockMvc.perform(post("/admin/dishes")
+                .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newDish)))
                 .andExpect(status().is2xxSuccessful())
@@ -124,6 +132,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
         newDish.setPrice(20000);
         newDish.setName("Обновленный бургер");
         mockMvc.perform(put("/admin/dishes/" + newDish.getId())
+                .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(newDish)))
                 .andExpect(status().isNoContent())
@@ -134,7 +143,8 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
     @Test
     void getDish() throws Exception {
         int id = commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()).get(0).getId();
-        mockMvc.perform(get("/admin/dishes/" + id))
+        mockMvc.perform(get("/admin/dishes/" + id)
+                .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -143,7 +153,8 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
 
     @Test
     void getAllDishToday() throws Exception {
-        mockMvc.perform(get("/admin/dishes"))
+        mockMvc.perform(get("/admin/dishes")
+                .with(userHttpBasic(ADMIN)))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -153,7 +164,8 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
     @Test
     void deleteDishToday() throws Exception {
         int id = commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()).get(0).getId();
-        mockMvc.perform(delete("/admin/dishes/" + id))
+        mockMvc.perform(delete("/admin/dishes/" + id)
+                .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isNoContent())
                 .andDo(print());
         TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_2_BURGER, DISH_3_BURGER), "id");

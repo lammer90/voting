@@ -34,6 +34,14 @@ public class Restaurant extends AbstractNamedEntity{
         super(id, name);
     }
 
+    public void setDishes(Set<Dish> dishes) {
+        this.dishes = dishes;
+    }
+
+    public void setVotes(Set<Vote> votes) {
+        this.votes = votes;
+    }
+
     public Set<Dish> getDishes() {
         return dishes;
     }

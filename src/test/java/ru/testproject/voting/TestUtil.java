@@ -1,6 +1,8 @@
 package ru.testproject.voting;
 
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.model.Role;
@@ -80,5 +82,9 @@ public class TestUtil {
 
     public static <T> List<T> readListFromJsonMvcResult(MvcResult result, Class<T> clazz) throws UnsupportedEncodingException {
         return JsonUtil.readValues(result.getResponse().getContentAsString(), clazz);
+    }
+
+    public static RequestPostProcessor userHttpBasic(User user) {
+        return SecurityMockMvcRequestPostProcessors.httpBasic(user.getName(), user.getPassword());
     }
 }

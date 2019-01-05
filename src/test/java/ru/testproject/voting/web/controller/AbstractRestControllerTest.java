@@ -14,6 +14,8 @@ import ru.testproject.voting.service.CommonService;
 
 import javax.annotation.PostConstruct;
 
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+
 @SpringJUnitWebConfig(locations = {
         "classpath:spring/spring-config.xml",
         "classpath:spring/spring-mvc.xml",
@@ -42,7 +44,7 @@ public class AbstractRestControllerTest {
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
                 .addFilter(CHARACTER_ENCODING_FILTER)
-               // .apply(springSecurity())
+                .apply(springSecurity())
                 .build();
     }
 }

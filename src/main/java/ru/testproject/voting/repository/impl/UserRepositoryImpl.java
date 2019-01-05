@@ -39,4 +39,8 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> getAll() {
         return jpaUserRepository.findAll(SORT);
     }
+
+    public User getByName(String name){
+        return jpaUserRepository.getByName(name);
+    }
 }

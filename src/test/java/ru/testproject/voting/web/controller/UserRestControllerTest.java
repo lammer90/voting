@@ -15,9 +15,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ru.testproject.voting.TestUtil.RESTAURANT_1;
-import static ru.testproject.voting.TestUtil.RESTAURANT_3;
-import static ru.testproject.voting.TestUtil.test;
+import static ru.testproject.voting.TestUtil.*;
+import static ru.testproject.voting.TestUtil.ADMIN;
 
 class UserRestControllerTest extends AbstractRestControllerTest {
 
@@ -26,8 +25,9 @@ class UserRestControllerTest extends AbstractRestControllerTest {
 
     @Test
     void newVoteBeforeTime() throws Exception {
-        SecurityUtil.setAuthUserId(100003);
-        mockMvc.perform(post("/vote/" + RESTAURANT_1.getId()))
+        //SecurityUtil.setAuthUserId(100003);
+        mockMvc.perform(post("/vote/" + RESTAURANT_1.getId())
+                .with(userHttpBasic(USER_4)))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print());
         test.runTest(commonService, RESTAURANT_1.getId(), 3);
@@ -35,27 +35,29 @@ class UserRestControllerTest extends AbstractRestControllerTest {
 
     @Test
     void repeatVoteBeforeUnderTime() throws Exception {
-        SecurityUtil.setAuthUserId(100000);
+        //SecurityUtil.setAuthUserId(100000);
         if (VerifyUtil.chekTime(11)) {
-            mockMvc.perform(post("/vote/" + RESTAURANT_1.getId()))
+            mockMvc.perform(post("/vote/" + RESTAURANT_1.getId())
+                    .with(userHttpBasic(USER_1)))
                     .andExpect(status().is2xxSuccessful())
                     .andDo(print());
             test.runTest(commonService, RESTAURANT_1.getId(), 3);
         } else {
-            assertThrowsWithCause(() -> mockMvc.perform(post("/vote/" + RESTAURANT_1.getId())), TimeLimitException.class);
+            assertThrowsWithCause(() -> mockMvc.perform(post("/vote/" + RESTAURANT_1.getId()).with(userHttpBasic(USER_1))), TimeLimitException.class);
         }
     }
 
     @Test
     void deleteVoteBeforeUnderToday() throws Exception {
-        SecurityUtil.setAuthUserId(100000);
+        //SecurityUtil.setAuthUserId(100000);
         if (VerifyUtil.chekTime(11)) {
-            mockMvc.perform(delete("/vote"))
+            mockMvc.perform(delete("/vote")
+                    .with(userHttpBasic(USER_1)))
                     .andExpect(status().isNoContent())
                     .andDo(print());
             test.runTest(commonService, RESTAURANT_3.getId(), 0);
         } else {
-            assertThrowsWithCause(() -> mockMvc.perform(delete("/vote")), TimeLimitException.class);
+            assertThrowsWithCause(() -> mockMvc.perform(delete("/vote").with(userHttpBasic(USER_1))), TimeLimitException.class);
         }
     }
 
