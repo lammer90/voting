@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.service.CommonService;
+import ru.testproject.voting.to.DishTo;
 import ru.testproject.voting.to.RestaurantTo;
 
 import java.time.LocalDate;
@@ -23,7 +24,7 @@ public abstract class AbstractCommonController {
         return commonService.getAllRestWithVotesAndDishesToday();
     }
 
-    public List<Dish> getAllDishesFilterByRestToday(int restId){
+    public List<DishTo> getAllDishesFilterByRestToday(int restId){
         return commonService.getAllDishesFilterByRestToday(restId);
     }
 }

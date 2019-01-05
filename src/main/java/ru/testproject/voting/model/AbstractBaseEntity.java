@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @MappedSuperclass
 @Access(AccessType.FIELD)
-public abstract class AbstractBaseEntity {
+public abstract class AbstractBaseEntity implements HasId{
 
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = 100000)
@@ -23,12 +23,8 @@ public abstract class AbstractBaseEntity {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public boolean isNew(){
-        return id == null;
     }
 
     @Override

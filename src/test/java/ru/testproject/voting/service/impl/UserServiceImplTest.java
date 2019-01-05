@@ -7,6 +7,7 @@ import ru.testproject.voting.model.AbstractNamedEntity;
 import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.service.CommonService;
 import ru.testproject.voting.service.UserService;
+import ru.testproject.voting.to.DishTo;
 import ru.testproject.voting.util.exception.TimeLimitException;
 
 import java.time.LocalDate;
@@ -29,9 +30,8 @@ public class UserServiceImplTest extends CommonServiceImplTest {
     @Test
     void getAllRestWithVotesAndDishesToday() {
         commonService.getAllRestWithVotesAndDishesToday()
-                .forEach((r) -> TestUtil.assertMatch(new ArrayList<Dish>(r.getDishes()).stream().sorted(Comparator.comparing(AbstractNamedEntity::getName)).collect(Collectors.toList())
-                        , commonService.getAllDishesFilterByRestToday(r.getId())
-                        , "id", "restaurant"));
+                .forEach((r) -> TestUtil.assertMatch(new ArrayList<>(r.getDishes()).stream().sorted(Comparator.comparing(DishTo::getName)).collect(Collectors.toList())
+                        , commonService.getAllDishesFilterByRestToday(r.getId())));
     }
 
     @Test

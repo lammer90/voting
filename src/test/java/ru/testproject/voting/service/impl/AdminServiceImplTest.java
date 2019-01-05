@@ -78,7 +78,7 @@ class AdminServiceImplTest extends CommonServiceImplTest {
     void addDish() {
         DishTo newDish = new DishTo("Новый бургер", 15000, RESTAURANT_1.getId());
         adminService.addDish(newDish);
-        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_1_BURGER, new Dish(newDish), DISH_2_BURGER, DISH_3_BURGER), "id", "restaurant");
+        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_1_BURGER, newDish, DISH_2_BURGER, DISH_3_BURGER), "id");
     }
 
     @Test
@@ -97,7 +97,7 @@ class AdminServiceImplTest extends CommonServiceImplTest {
         newDish.setName("Обновленный бургер");
         adminService.updateDish(newDish);
 
-        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(new Dish(newDish), DISH_2_BURGER, DISH_3_BURGER), "id", "restaurant");
+        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(newDish, DISH_2_BURGER, DISH_3_BURGER), "id");
     }
 
     @Test
@@ -109,12 +109,12 @@ class AdminServiceImplTest extends CommonServiceImplTest {
     void deleteDish() {
         int id = commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()).get(0).getId();
         adminService.deleteDish(id);
-        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_2_BURGER, DISH_3_BURGER), "id", "restaurant");
+        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_2_BURGER, DISH_3_BURGER), "id");
     }
 
     @Test
     void getDish() {
         int id = commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()).get(0).getId();
-        TestUtil.assertMatch(adminService.getDish(id), DISH_1_BURGER, "id", "restaurant");
+        TestUtil.assertMatch(adminService.getDish(id), new Dish(DISH_1_BURGER), "id", "restaurant");
     }
 }

@@ -7,6 +7,7 @@ import ru.testproject.voting.model.Restaurant;
 import ru.testproject.voting.repository.DishRepository;
 import ru.testproject.voting.repository.RestaurantRepository;
 import ru.testproject.voting.service.CommonService;
+import ru.testproject.voting.to.DishTo;
 import ru.testproject.voting.to.RestaurantTo;
 
 import java.time.LocalDate;
@@ -25,9 +26,11 @@ public class CommonServiceImpl implements CommonService {
     private DishRepository dishRepository;
 
     @Override
-    public List<Dish> getAllDishesFilterByRestToday(int restId) {
+    public List<DishTo> getAllDishesFilterByRestToday(int restId) {
         chekObject(restaurantRepository.get(restId), "No restaurant found");
-        return dishRepository.getAllFilterRestAndDate(restId, LocalDate.now());
+        return dishRepository.getAllFilterRestAndDate(restId, LocalDate.now()).stream()
+                .map(DishTo::new)
+                .collect(Collectors.toList());
     }
 
     @Override

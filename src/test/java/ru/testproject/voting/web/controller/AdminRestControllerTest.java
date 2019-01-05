@@ -114,7 +114,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(result -> newDish.setId(TestUtil.readFromJsonMvcResult(result, Dish.class).getId()));
-        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_1_BURGER, new Dish(newDish), DISH_2_BURGER, DISH_3_BURGER), "id", "restaurant");
+        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_1_BURGER, newDish, DISH_2_BURGER, DISH_3_BURGER), "id");
     }
 
     @Test
@@ -128,7 +128,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
                 .content(JsonUtil.writeValue(newDish)))
                 .andExpect(status().isNoContent())
                 .andDo(print());
-        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(new Dish(newDish), DISH_2_BURGER, DISH_3_BURGER), "id", "restaurant");
+        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(newDish, DISH_2_BURGER, DISH_3_BURGER), "id");
     }
 
     @Test
@@ -138,7 +138,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(result -> assertMatch(readListFromJsonMvcResult(result, Dish.class), List.of(DISH_1_BURGER), "id", "restaurant"));
+                .andExpect(result -> assertMatch(readListFromJsonMvcResult(result, Dish.class), List.of(new Dish(DISH_1_BURGER)), "id", "restaurant"));
     }
 
     @Test
@@ -156,6 +156,6 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
         mockMvc.perform(delete("/admin/dishes/" + id))
                 .andExpect(status().isNoContent())
                 .andDo(print());
-        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_2_BURGER, DISH_3_BURGER), "id", "restaurant");
+        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_2_BURGER, DISH_3_BURGER), "id");
     }
 }

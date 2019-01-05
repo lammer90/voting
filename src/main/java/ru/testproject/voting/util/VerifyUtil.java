@@ -1,6 +1,7 @@
 package ru.testproject.voting.util;
 
 import ru.testproject.voting.model.AbstractBaseEntity;
+import ru.testproject.voting.model.HasId;
 import ru.testproject.voting.util.exception.NotFoundException;
 
 import java.time.LocalTime;
@@ -30,7 +31,7 @@ public class VerifyUtil {
         return LocalTime.now().getHour() < time;
     }
 
-    public static void assureIdConsistent(AbstractBaseEntity bean, int id) {
+    public static void assureIdConsistent(HasId bean, int id) {
         if (bean.isNew()) {
             bean.setId(id);
         } else if (bean.getId() != id) {

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.testproject.voting.model.Dish;
 import ru.testproject.voting.model.Restaurant;
+import ru.testproject.voting.to.DishTo;
 import ru.testproject.voting.to.RestaurantTo;
 import ru.testproject.voting.web.controller.AbstractCommonController;
 
@@ -30,7 +31,7 @@ public class ViewDetailsRestController extends AbstractCommonController {
 
     @Override
     @GetMapping(value = "/dishesBy/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Dish> getAllDishesFilterByRestToday(@PathVariable("id") int restId) {
+    public List<DishTo> getAllDishesFilterByRestToday(@PathVariable("id") int restId) {
         return super.getAllDishesFilterByRestToday(restId);
     }
 }
