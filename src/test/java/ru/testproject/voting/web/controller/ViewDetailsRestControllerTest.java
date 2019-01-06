@@ -27,7 +27,7 @@ class ViewDetailsRestControllerTest extends AbstractRestControllerTest{
 
     @Test
     void getAllRest() throws Exception {
-        mockMvc.perform(get("/viewDetails/restaurants")
+        mockMvc.perform(get("/view/restaurants")
                 .with(userHttpBasic(USER_1)))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print())
@@ -37,7 +37,7 @@ class ViewDetailsRestControllerTest extends AbstractRestControllerTest{
 
     @Test
     void getAllRestWithVotesAndDishesToday() throws Exception {
-        mockMvc.perform(get("/viewDetails/resultOfVoting")
+        mockMvc.perform(get("/view/results")
                 .with(userHttpBasic(USER_1)))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print())
@@ -49,7 +49,7 @@ class ViewDetailsRestControllerTest extends AbstractRestControllerTest{
 
     @Test
     void getAllDishesFilterByRestToday() throws Exception {
-        mockMvc.perform(get("/viewDetails/dishesBy/" + RESTAURANT_1.getId())
+        mockMvc.perform(get("/view/dishesBy/" + RESTAURANT_1.getId())
                 .with(userHttpBasic(USER_1)))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print())

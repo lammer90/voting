@@ -14,7 +14,7 @@ import ru.testproject.voting.web.controller.AbstractCommonController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/viewDetails")
+@RequestMapping("/view")
 public class ViewDetailsRestController extends AbstractCommonController {
 
     @Override
@@ -24,7 +24,7 @@ public class ViewDetailsRestController extends AbstractCommonController {
     }
 
     @Override
-    @GetMapping(value = "/resultOfVoting", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/results", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<RestaurantTo> getAllRestWithVotesAndDishesToday() {
         return super.getAllRestWithVotesAndDishesToday();
     }

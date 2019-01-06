@@ -15,6 +15,7 @@ public class UserRestController extends UserController {
     UserService userService;
 
     @PostMapping(value = "/{id}")
+    @ResponseStatus(value = HttpStatus.OK)
     public void vote(@PathVariable("id") int restId) {
         super.addOrUpdateVote(restId);
     }
