@@ -79,7 +79,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
                 .content(JsonUtil.writeValue(newUser)))
                 .andExpect(status().isNoContent())
                 .andDo(print());
-        TestUtil.assertMatch(adminService.getAllUsers(), List.of(ADMIN, newUser, USER_2, USER_3, USER_4, USER_5), "votes");
+        TestUtil.assertMatch(adminService.getAllUsers(), List.of(ADMIN, USER_2, USER_3, USER_4, USER_5, newUser), "votes");
     }
 
     @Test
@@ -122,7 +122,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(result -> newDish.setId(TestUtil.readFromJsonMvcResult(result, Dish.class).getId()));
-        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_1_BURGER, newDish, DISH_2_BURGER, DISH_3_BURGER), "id");
+        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(newDish, DISH_1_BURGER, DISH_2_BURGER, DISH_3_BURGER), "id");
     }
 
     @Test

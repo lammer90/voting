@@ -55,7 +55,7 @@ class AdminServiceImplTest extends CommonServiceImplTest {
         newUser.setName("new Name");
         newUser.setPassword("new Pass");
         adminService.updateUser(newUser);
-        TestUtil.assertMatch(adminService.getAllUsers(), List.of(ADMIN, newUser, USER_2, USER_3, USER_4, USER_5), "votes");
+        TestUtil.assertMatch(adminService.getAllUsers(), List.of(ADMIN, USER_2, USER_3, USER_4, USER_5, newUser), "votes");
     }
 
     @Test
@@ -78,7 +78,7 @@ class AdminServiceImplTest extends CommonServiceImplTest {
     void addDish() {
         DishTo newDish = new DishTo("Новый бургер", 15000, RESTAURANT_1.getId());
         adminService.addDish(newDish);
-        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(DISH_1_BURGER, newDish, DISH_2_BURGER, DISH_3_BURGER), "id");
+        TestUtil.assertMatch(commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()), List.of(newDish, DISH_1_BURGER, DISH_2_BURGER, DISH_3_BURGER), "id");
     }
 
     @Test
