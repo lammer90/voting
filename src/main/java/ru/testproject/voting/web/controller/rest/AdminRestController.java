@@ -83,13 +83,13 @@ public class AdminRestController extends AdminController {
 
     @Override
     @GetMapping(value = "/dishes/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Dish getDish(@PathVariable("id") int id) {
+    public DishTo getDish(@PathVariable("id") int id) {
         return super.getDish(id);
     }
 
     @Override
     @GetMapping(value = "/dishes", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Dish> getAllDishToday() {
+    public List<DishTo> getAllDishToday() {
         return super.getAllDishToday();
     }
 

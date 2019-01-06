@@ -83,7 +83,7 @@ class AdminServiceImplTest extends CommonServiceImplTest {
 
     @Test
     void updateDishTimeException() {
-        DishTo newDish = new DishTo(adminService.getDish(100009));
+        DishTo newDish = adminService.getDish(100009);
 
         assertThrows(TimeLimitException.class, () ->
                 adminService.updateDish(newDish));
@@ -92,7 +92,7 @@ class AdminServiceImplTest extends CommonServiceImplTest {
     @Test
     void updateDish() {
         int id = commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()).get(0).getId();
-        DishTo newDish = new DishTo(adminService.getDish(id));
+        DishTo newDish = adminService.getDish(id);
         newDish.setPrice(20000);
         newDish.setName("Обновленный бургер");
         adminService.updateDish(newDish);

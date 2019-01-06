@@ -28,13 +28,13 @@ public interface AdminService {
 
     void updateDish(DishTo dishTo);
 
-    Dish getDish(int id);
+    DishTo getDish(int id);
 
-    default List<Dish> getAllDishToday() {
+    default List<DishTo> getAllDishToday() {
         return getAllDishByDate(LocalDate.now());
     }
 
-    List<Dish> getAllDishByDate(LocalDate localDate);
+    List<DishTo> getAllDishByDate(LocalDate localDate);
 
     void deleteDish(int id);
 }

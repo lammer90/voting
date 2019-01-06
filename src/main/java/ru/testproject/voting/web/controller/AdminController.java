@@ -53,11 +53,11 @@ public abstract class AdminController extends AbstractCommonController {
         adminService.updateDish(dishTo);
     }
 
-    public Dish getDish(int id) {
+    public DishTo getDish(int id) {
         return adminService.getDish(id);
     }
 
-    public List<Dish> getAllDishToday() {
+    public List<DishTo> getAllDishToday() {
         return adminService.getAllDishToday();
     }
 

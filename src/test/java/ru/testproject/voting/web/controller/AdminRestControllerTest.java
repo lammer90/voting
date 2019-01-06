@@ -128,7 +128,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
     @Test
     void updateDishToday() throws Exception {
         int id = commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()).get(0).getId();
-        DishTo newDish = new DishTo(adminService.getDish(id));
+        DishTo newDish = adminService.getDish(id);
         newDish.setPrice(20000);
         newDish.setName("Обновленный бургер");
         mockMvc.perform(put("/admin/dishes/" + newDish.getId())
@@ -148,7 +148,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(result -> assertMatch(readListFromJsonMvcResult(result, Dish.class), List.of(new Dish(DISH_1_BURGER)), "id", "restaurant"));
+                .andExpect(result -> assertMatch(readListFromJsonMvcResult(result, DishTo.class), List.of(DISH_1_BURGER), "id", "restaurant"));
     }
 
     @Test
@@ -158,7 +158,7 @@ class AdminRestControllerTest extends AbstractRestControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(result -> assertEquals(9, readListFromJsonMvcResult(result, Dish.class).size()));
+                .andExpect(result -> assertEquals(9, readListFromJsonMvcResult(result, DishTo.class).size()));
     }
 
     @Test

@@ -16,6 +16,7 @@ import ru.testproject.voting.util.exception.TimeLimitException;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static ru.testproject.voting.util.VerifyUtil.*;
 
@@ -91,8 +92,8 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<Dish> getAllDishByDate(LocalDate localDate) {
-        return dishRepository.getAllFilterDate(localDate);
+    public List<DishTo> getAllDishByDate(LocalDate localDate) {
+        return dishRepository.getAllFilterDate(localDate).stream().map(DishTo::new).collect(Collectors.toList());
     }
 
     @Override
@@ -102,9 +103,9 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Dish getDish(int id) {
+    public DishTo getDish(int id) {
         //verifyDishDate(id);
-        return chekObject(dishRepository.get(id), "No dish found");
+        return chekObject(new DishTo(dishRepository.get(id)), "No dish found");
     }
 
     private void verifyDishDate(int id){
