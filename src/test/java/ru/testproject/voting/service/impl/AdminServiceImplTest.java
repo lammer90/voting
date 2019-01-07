@@ -64,6 +64,12 @@ class AdminServiceImplTest extends CommonServiceImplTest {
     }
 
     @Test
+    void getUserNotFound() {
+        assertThrows(NotFoundException.class, () ->
+                TestUtil.assertMatch(adminService.getUser(100039), ADMIN, "votes"));
+    }
+
+    @Test
     void deleteUser() {
         adminService.deleteUser(USER_1.getId());
         TestUtil.assertMatch(adminService.getAllUsers(), List.of(ADMIN, USER_2, USER_3, USER_4, USER_5), "votes");
@@ -116,5 +122,11 @@ class AdminServiceImplTest extends CommonServiceImplTest {
     void getDish() {
         int id = commonService.getAllDishesFilterByRestToday(RESTAURANT_1.getId()).get(0).getId();
         TestUtil.assertMatch(adminService.getDish(id), new Dish(DISH_1_BURGER), "id", "restaurant");
+    }
+
+    @Test
+    void getDishNotFound() {
+        assertThrows(NotFoundException.class, () ->
+                TestUtil.assertMatch(adminService.getDish(100139), new Dish(DISH_1_BURGER), "id", "restaurant"));
     }
 }

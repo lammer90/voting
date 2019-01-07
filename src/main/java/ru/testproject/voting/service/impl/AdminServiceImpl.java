@@ -105,11 +105,12 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public DishTo getDish(int id) {
         //verifyDishDate(id);
-        return chekObject(new DishTo(dishRepository.get(id)), "No dish found");
+        return new DishTo(chekObject(dishRepository.get(id), "No dish found"));
     }
 
     private void verifyDishDate(int id){
-        if (!dishRepository.get(id).getDate().equals(LocalDate.now())){
+        Dish dish = chekObject(dishRepository.get(id), "No dish found");
+        if (!dish.getDate().equals(LocalDate.now())){
             throw new TimeLimitException("You can not change the old dishes");
         }
     }
