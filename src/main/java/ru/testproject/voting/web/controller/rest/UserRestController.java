@@ -3,7 +3,6 @@ package ru.testproject.voting.web.controller.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.testproject.voting.model.Vote;
 import ru.testproject.voting.service.UserService;
 import ru.testproject.voting.web.controller.UserController;
 

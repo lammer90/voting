@@ -1,12 +1,9 @@
 package ru.testproject.voting.web.controller;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.testproject.voting.service.UserService;
 import ru.testproject.voting.util.VerifyUtil;
-import ru.testproject.voting.util.exception.TimeLimitException;
-import ru.testproject.voting.web.SecurityUtil;
 
 import java.util.concurrent.Callable;
 
@@ -16,7 +13,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.testproject.voting.TestUtil.*;
-import static ru.testproject.voting.TestUtil.ADMIN;
 
 class UserRestControllerTest extends AbstractRestControllerTest {
 
