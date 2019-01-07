@@ -1,6 +1,5 @@
 package ru.testproject.voting.util;
 
-import ru.testproject.voting.model.AbstractBaseEntity;
 import ru.testproject.voting.model.HasId;
 import ru.testproject.voting.util.exception.NotFoundException;
 

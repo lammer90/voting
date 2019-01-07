@@ -28,6 +28,6 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <context:component-scan base-package="ru.testproject.voting.web.controller"/>
+    <context:component-scan base-package="ru.testproject.voting.web"/>
 
 </beans>
