@@ -43,7 +43,10 @@ class UserRestControllerTest extends AbstractRestControllerTest {
                     .andDo(print());
             test.runTest(commonService, RESTAURANT_1.getId(), 3);
         } else {
-            assertThrowsWithCause(() -> mockMvc.perform(post("/vote/" + RESTAURANT_1.getId()).with(userHttpBasic(USER_1))), TimeLimitException.class);
+            mockMvc.perform(post("/vote/" + RESTAURANT_1.getId())
+                    .with(userHttpBasic(USER_1)))
+                    .andExpect(status().isInternalServerError());
+            //assertThrowsWithCause(() -> mockMvc.perform(post("/vote/" + RESTAURANT_1.getId()).with(userHttpBasic(USER_1))), TimeLimitException.class);
         }
     }
 
@@ -57,7 +60,10 @@ class UserRestControllerTest extends AbstractRestControllerTest {
                     .andDo(print());
             test.runTest(commonService, RESTAURANT_3.getId(), 0);
         } else {
-            assertThrowsWithCause(() -> mockMvc.perform(delete("/vote").with(userHttpBasic(USER_1))), TimeLimitException.class);
+            mockMvc.perform(delete("/vote")
+                    .with(userHttpBasic(USER_1)))
+                    .andExpect(status().isInternalServerError());
+            //assertThrowsWithCause(() -> mockMvc.perform(delete("/vote").with(userHttpBasic(USER_1))), TimeLimitException.class);
         }
     }
 
