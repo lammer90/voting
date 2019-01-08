@@ -20,6 +20,10 @@ public abstract class AbstractCommonController {
         return commonService.getAllRest();
     }
 
+    public List<RestaurantTo> getAllRestWithVotesAndDishesByDate(LocalDate date){
+        return commonService.getAllRestWithVotesAndDishesByDate(date);
+    }
+
     public List<RestaurantTo> getAllRestWithVotesAndDishesToday(){
         return commonService.getAllRestWithVotesAndDishesToday();
     }
