@@ -9,9 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan
 public class BootApplication {
-
     public static void main(String[] args) throws Throwable {
         SpringApplication.run(BootApplication.class, args);
     }
-
 }

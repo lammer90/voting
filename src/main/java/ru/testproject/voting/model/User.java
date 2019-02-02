@@ -1,6 +1,5 @@
 package ru.testproject.voting.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
@@ -8,14 +7,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User extends AbstractNamedEntity{
+public class User extends AbstractNamedEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<Vote> votes;
@@ -45,7 +41,7 @@ public class User extends AbstractNamedEntity{
         this.password = password;
     }
 
-    public User(Integer id, String name,  String password, Set<Role> roles) {
+    public User(Integer id, String name, String password, Set<Role> roles) {
         super(id, name);
         this.roles = roles;
         this.password = password;
