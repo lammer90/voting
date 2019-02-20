@@ -3,9 +3,6 @@ package ru.testproject.voting.service.impl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.testproject.voting.TestUtil;
-import ru.testproject.voting.model.AbstractNamedEntity;
-import ru.testproject.voting.model.Dish;
-import ru.testproject.voting.service.CommonService;
 import ru.testproject.voting.service.UserService;
 import ru.testproject.voting.to.DishTo;
 import ru.testproject.voting.util.exception.TimeLimitException;
@@ -16,11 +13,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static ru.testproject.voting.TestUtil.RESTAURANT_1;
-import static ru.testproject.voting.TestUtil.RESTAURANT_3;
-import static ru.testproject.voting.TestUtil.test;
+import static ru.testproject.voting.TestUtil.*;
 
 public class UserServiceImplTest extends CommonServiceImplTest {
 
